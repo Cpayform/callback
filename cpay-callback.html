@@ -5,13 +5,13 @@
   <title>CPAY Callback</title>
   <script>
     window.onload = function () {
-      // Parse query parameters.
+      // Parse the query parameters.
       const params = new URLSearchParams(window.location.search);
-      const status = params.get("status");  // expected "ok" or "failed"
+      const status = params.get("status"); // expected "ok" or "failed"
       const orderId = params.get("orderId") || "default";
       const appSectionParams = params.get("appSectionParams");
-
-      // Determine the target URL based on the status.
+      
+      // Determine the target URL.
       let targetUrl = "";
       if (status === "failed") {
         targetUrl = "https://www.mnmlbynana.com/payment-failed";
@@ -21,14 +21,13 @@
           targetUrl += `?appSectionParams=${encodeURIComponent(appSectionParams)}`;
         }
       }
-
-      console.log("Redirecting user to:", targetUrl);
-      // Redirect the browser.
+      
+      console.log("Callback page: Redirecting user to:", targetUrl);
       window.location.href = targetUrl;
-    }
+    };
   </script>
 </head>
 <body>
-  <p>Please wait while we redirect you...</p>
+  <p>Redirecting, please wait...</p>
 </body>
 </html>
